@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '@styles/colors';
+import { styles } from './styles';
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -26,9 +26,8 @@ const MainLayout = ({
     <View
       {...viewProps}
       style={[
+        styles.container,
         {
-          backgroundColor: Colors.White,
-          flex: 1,
           paddingLeft: insets.left + 16,
           paddingRight: insets.right + 16,
           paddingBottom: insets.bottom,
@@ -42,7 +41,7 @@ const MainLayout = ({
 
   const withScroll = scrollable ? (
     <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
+      contentContainerStyle={styles.scrollContent}
       keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}
     >

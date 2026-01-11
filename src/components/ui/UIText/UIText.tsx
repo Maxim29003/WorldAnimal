@@ -1,5 +1,5 @@
 import { StyleProp, Text, TextStyle } from 'react-native';
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { FontSize, Typography } from '@styles/typography';
 import { Colors } from '@styles/colors';
 
@@ -16,9 +16,10 @@ const UIText = ({
   style,
   children,
 }: UITextProps) => {
+  const colorStyle = useMemo(() => ({ color }), [color]);
   return (
-    <Text style={[Typography[variant], { color }, style]}>{children}</Text>
+    <Text style={[Typography[variant], colorStyle, style]}>{children}</Text>
   );
 };
 
-export default UIText;
+export default memo(UIText);

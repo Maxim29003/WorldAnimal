@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { View } from 'react-native';
+import React, { memo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import useAppNavigation from '@hooks/useAppNavigation';
 import { Colors } from '@styles/colors';
@@ -10,6 +10,7 @@ import LikeIcon from '@assets/svg/LikeIcon';
 import { SCREENS } from '@routes/navigations.types';
 import BackIcon from '@assets/svg/BackIcon';
 import { useFavoritesStore } from '@store/useFavoritesStore';
+import { styles } from './styles';
 
 type HeaderProps = {
   title?: string;
@@ -23,16 +24,14 @@ const Header = ({ title, color, variant = 'primary' }: HeaderProps) => {
   const navigation = useAppNavigation();
   return (
     <View
-      style={{
-        backgroundColor: Colors.White,
-        paddingBottom: 15,
-        elevation: 5,
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.Gray200,
-        paddingTop: insets.top + 15,
-        paddingLeft: insets.left + 15,
-        paddingRight: insets.right + 15,
-      }}
+      style={[
+        styles.container,
+        {
+          paddingTop: insets.top + 15,
+          paddingLeft: insets.left + 15,
+          paddingRight: insets.right + 15,
+        },
+      ]}
     >
       {variant === 'secondary' && (
         <Row align="center" gap={12}>
@@ -66,6 +65,4 @@ const Header = ({ title, color, variant = 'primary' }: HeaderProps) => {
   );
 };
 
-export default Header;
-
-const styles = StyleSheet.create({});
+export default memo(Header);

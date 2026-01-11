@@ -1,9 +1,7 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import { Image, TouchableOpacity, View } from 'react-native';
+import React, { memo } from 'react';
 import { Animal } from '@appTypes/AnimalType';
 import { Colors } from '@styles/colors';
-import Column from '@layouts/Column/Column';
-import { borderRadius } from '@styles/borderRadius';
 import { Spacer } from '@ui/Spacer/Spacer';
 import UIText from '@ui/UIText/UIText';
 import useAppNavigation from '@hooks/useAppNavigation';
@@ -11,7 +9,7 @@ import { SCREENS } from '@routes/navigations.types';
 import UIButtonIcon from '@ui/UIButtonIcon/UIButtonIcon';
 import LikeIcon from '@assets/svg/LikeIcon';
 import { useFavoritesStore } from '@store/useFavoritesStore';
-
+import { styles } from './styles';
 
 type AnimalCardProps = {
   animal: Animal;
@@ -28,39 +26,35 @@ const AnimalCard = ({ animal, color }: AnimalCardProps) => {
       onPress={() => {
         navigation.navigate(SCREENS.DETAIL, { animal, color });
       }}
-      style={{
-        borderRadius: borderRadius.large,
-        backgroundColor: color,
-        position: 'relative',
-      }}
+      style={[styles.card, { backgroundColor: color }]}
     >
-     
-     <View style={{ position: 'absolute', zIndex: 10, right: 7, top: 7 }}>
-  <UIButtonIcon
-        outline
-        icon={isLiked ? <LikeIcon fill={Colors.Favorite} stroke={Colors.Favorite}/> : <LikeIcon/> }
-        onPress={()=>{toggleLike(animal.id)}}
-        
-      />
-     </View>
+      <View style={styles.likeButton}>
+        <UIButtonIcon
+          outline
+          icon={
+            isLiked ? (
+              <LikeIcon fill={Colors.Favorite} stroke={Colors.Favorite} />
+            ) : (
+              <LikeIcon />
+            )
+          }
+          onPress={() => {
+            toggleLike(animal.id);
+          }}
+        />
+      </View>
 
-      <View
-        style={{
-          height: 360,
-          borderRadius: borderRadius.large,
-          overflow: 'hidden',
-        }}
-      >
+      <View style={styles.imageWrapper}>
         <Image
           source={{ uri: animal.image }}
-          style={{ width: '100%', height: '100%' }}
+          style={styles.image}
           resizeMode="cover"
         />
       </View>
       <Spacer vertical={16} />
       <UIText
         color={Colors.TextPrimary}
-        style={{ textAlign: 'center' }}
+        style={styles.title}
         variant="animalName"
       >
         {animal.name}
@@ -70,4 +64,4 @@ const AnimalCard = ({ animal, color }: AnimalCardProps) => {
   );
 };
 
-export default AnimalCard;
+export default memo(AnimalCard);

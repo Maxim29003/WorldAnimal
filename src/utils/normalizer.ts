@@ -7,12 +7,6 @@ const HEIGHT = Window.height;
 
 const isTablet = WIDTH >= 768;
 
-
-
-
-const MainLayoutWidth = WIDTH - 48;
-
-
 export {
   Window,
   WIDTH,

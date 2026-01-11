@@ -15,13 +15,6 @@ export const Typography = StyleSheet.create({
     lineHeight: 28,
   },
 
-  // Заголовок на экране деталей
-  detailTitle: {
-    fontSize: 32,
-    fontWeight: '600',
-    lineHeight: 40,
-  },
-
   // Описание животного
   description: {
     fontSize: 18,
@@ -49,26 +42,6 @@ export const Typography = StyleSheet.create({
     lineHeight: 24,
   },
 
-  // Факты
-  factText: {
-    fontSize: 16,
-    fontWeight: '400',
-    lineHeight: 24,
-  },
-
-  // Текст пустого состояния (когда нет животных)
-  emptyStateText: {
-    fontSize: 20,
-    fontWeight: '400',
-    lineHeight: 28,
-  },
-
-  // Эмодзи в пустом состоянии
-  emptyStateEmoji: {
-    fontSize: 60,
-    fontWeight: '400',
-    lineHeight: 60,
-  },
 });
 
 export type FontSize = keyof typeof Typography;

@@ -4,27 +4,28 @@ import WeightIcon from '@assets/svg/WeightIcon';
 import Column from '@layouts/Column/Column';
 import MainLayout from '@layouts/MainLayout/MainLayout';
 import Row from '@layouts/Row/Row';
-import { borderRadius } from '@styles/borderRadius';
 import { Colors } from '@styles/colors';
 import { Spacer } from '@ui/Spacer/Spacer';
 import UIText from '@ui/UIText/UIText';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, View } from 'react-native';
 import InfoRow from './components/InfoRow/InfoRow';
 import { isTablet, WIDTH } from '@utils/normalizer';
 import useAppRoute from '@hooks/useAppRoute';
 import { SCREENS } from '@routes/navigations.types';
 import { useLayoutEffect } from 'react';
 import useAppNavigation from '@hooks/useAppNavigation';
+import { styles } from './styles';
 
 function DetailScreen() {
   const route = useAppRoute<SCREENS.DETAIL>();
   const navigation = useAppNavigation();
   const { animal, color } = route.params;
+
   useLayoutEffect(() => {
     navigation.setOptions({ title: animal.name });
   }, [navigation, animal.name]);
 
-  const imageWidth = isTablet ? 720 : WIDTH;
+  const imageWidth = isTablet ? 720 : WIDTH - 30;
   const imageHeight = isTablet
     ? (imageWidth * 9) / 16
     : Math.min(320, WIDTH * 0.6);
@@ -35,9 +36,7 @@ function DetailScreen() {
       <View
         style={[
           styles.imageWrapper,
-
           { width: imageWidth, height: imageHeight, alignSelf: 'center' },
-          !isTablet && { paddingHorizontal: 16 },
         ]}
       >
         <Image
@@ -58,7 +57,7 @@ function DetailScreen() {
       <UIText
         variant="sectionTitle"
         color={Colors.TextPrimary}
-        style={{ textAlign: 'left' }}
+        style={styles.sectionTitle}
       >
         Характеристики
       </UIText>
@@ -88,7 +87,7 @@ function DetailScreen() {
       <UIText
         variant="sectionTitle"
         color={Colors.TextPrimary}
-        style={{ textAlign: 'left' }}
+        style={styles.sectionTitle}
       >
         💡 Интересные факты
       </UIText>
@@ -96,15 +95,11 @@ function DetailScreen() {
       <Spacer vertical={16} />
 
       <Column
-        style={{
-          padding: 24,
-          backgroundColor: color,
-          borderRadius: borderRadius.large,
-        }}
+        style={[styles.factsContainer, { backgroundColor: color }]}
         gap={10}
       >
         {animal.facts.map(fact => (
-          <Row align="center" key={fact}>
+          <Row align="center" key={fact} style={styles.factRow}>
             <UIText variant="characteristicValue" color={Colors.TextPrimary}>
               •
             </UIText>
@@ -122,15 +117,3 @@ function DetailScreen() {
 }
 
 export default DetailScreen;
-
-const styles = StyleSheet.create({
-  imageWrapper: {
-    width: '100%',
-    borderRadius: borderRadius.large,
-    overflow: 'hidden',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-});

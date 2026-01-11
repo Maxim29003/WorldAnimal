@@ -1,4 +1,3 @@
-// store/useFavoritesStore.ts
 import { loadFavorites, saveFavorites } from '@utils/MMKVStorage';
 import { create } from 'zustand';
 

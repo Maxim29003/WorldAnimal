@@ -1,10 +1,10 @@
 import React from 'react';
 import Row from '@layouts/Row/Row';
 import { Colors } from '@styles/colors';
-import { borderRadius } from '@styles/borderRadius';
 import Column from '@layouts/Column/Column';
 import { Spacer } from '@ui/Spacer/Spacer';
 import UIText from '@ui/UIText/UIText';
+import { styles } from './styles';
 
 type InfoRowProps = {
   icon: React.ReactNode;
@@ -16,11 +16,7 @@ const InfoRow = ({ icon, title, desdescription }: InfoRowProps) => {
   return (
     <Row
       align="center"
-      style={{
-        backgroundColor: Colors.Gray50,
-        padding: 16,
-        borderRadius: borderRadius.large,
-      }}
+      style={styles.container}
     >
       {icon}
       <Spacer horizontal={12} />
