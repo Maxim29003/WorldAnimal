@@ -11,6 +11,10 @@
 - Кастомные SVG-иконки и стили
 - BootSplash при запуске, ErrorBoundary для перехвата ошибок
 
+## Demo
+
+📺 [Watch the video demonstration](https://youtu.be/W05j9FY6smU)
+
 ## Используемые библиотеки
 
 - React Native и React
