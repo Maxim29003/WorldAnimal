@@ -13,7 +13,7 @@
 
 ## Demo
 
-📺 [Watch the video demonstration](https://youtu.be/W05j9FY6smU)
+📺 [Watch the video demonstration](https://youtu.be/O1ou1G9xVGI)
 
 ## Используемые библиотеки
 
